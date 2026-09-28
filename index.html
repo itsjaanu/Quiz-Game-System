@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="QuizLab — an interactive quiz game with multiple age groups, themes and game modes."
+    >
+
+    <meta name="theme-color" content="#090b14">
+
+    <title>QuizLab — Challenge Your Mind</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- ================================
+         BACKGROUND
+    ================================= -->
+
+    <div class="background">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="orb orb-three"></div>
+
+        <div class="grid-background"></div>
+    </div>
+
+
+    <!-- ================================
+         APP
+    ================================= -->
+
+    <div id="app">
+
+
+        <!-- ================================
+             HEADER
+        ================================= -->
+
+        <header class="header">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    Q
+                </div>
+
+                <div class="brand-text">
+                    <strong>Quiz</strong><span>Lab</span>
+                </div>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button
+                    id="soundButton"
+                    class="header-button"
+                    title="Toggle sound"
+                    aria-label="Toggle sound"
+                >
+                    🔊
+                </button>
+
+                <button
+                    id="themeButton"
+                    class="header-button"
+                    title="Toggle appearance"
+                    aria-label="Toggle appearance"
+                >
+                    ☾
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================================
+             HOME SCREEN
+        ================================= -->
+
+        <main id="homeScreen" class="screen active">
+
+            <section class="hero">
+
+                <div class="hero-badge">
+                    ✦ THE ULTIMATE QUIZ EXPERIENCE
+                </div>
+
+                <h1>
+                    Challenge your
+                    <span>mind.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Choose your age group, explore a world of themes,
+                    and build your own quiz challenge.
+                </p>
+
+            </section>
+
+
+
+            <!-- AGE GROUP -->
+
+            <section class="card">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-label">
+                            STEP 01
+                        </span>
+
+                        <h2>
+                            Choose your age group
+                        </h2>
+
+                        <p>
+                            Questions adapt to your selected level.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="ageGroups"
+                    class="age-grid"
+                ></div>
+
+            </section>
+
+
+
+            <!-- THEMES -->
+
+            <section
+                id="themeSection"
+                class="card hidden"
+            >
+
+                <div class="section-heading theme-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            STEP 02
+                        </span>
+
+                        <h2>
+                            Choose your world
+                        </h2>
+
+                        <p>
+                            Pick a theme and enter the challenge.
+                        </p>
+
+                    </div>
+
+                    <div class="selection-badge">
+                        Choose a theme
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="themes"
+                    class="theme-grid"
+                ></div>
+
+            </section>
+
+        </main>
+
+
+
+        <!-- ================================
+             SETUP SCREEN
+        ================================= -->
+
+        <main id="setupScreen" class="screen">
+
+            <button
+                id="backToHome"
+                class="back-button"
+            >
+                ← Back
+            </button>
+
+
+            <section class="setup-header">
+
+                <span class="section-label">
+                    QUIZ SETUP
+                </span>
+
+                <h1 id="setupTheme">
+                    Quiz
+                </h1>
+
+                <p id="setupDescription">
+                    Configure your challenge.
+                </p>
+
+            </section>
+
+
+
+            <section class="mode-grid">
+
+                <!-- TIME MODE -->
+
+                <button
+                    class="mode-card"
+                    data-mode="time"
+                >
+
+                    <div class="mode-icon">
+                        ⏱
+                    </div>
+
+                    <div class="mode-content">
+
+                        <span class="mode-number">
+                            MODE 01
+                        </span>
+
+                        <h2>
+                            Select Time
+                        </h2>
+
+                        <p>
+                            Answer as many questions as possible
+                            before the timer runs out.
+                        </p>
+
+                    </div>
+
+                    <span class="mode-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+
+                <!-- QUESTION MODE -->
+
+                <button
+                    class="mode-card"
+                    data-mode="questions"
+                >
+
+                    <div class="mode-icon">
+                        ☷
+                    </div>
+
+                    <div class="mode-content">
+
+                        <span class="mode-number">
+                            MODE 02
+                        </span>
+
+                        <h2>
+                            Select Questions
+                        </h2>
+
+                        <p>
+                            Choose exactly how many questions
+                            you want to answer.
+                        </p>
+
+                    </div>
+
+                    <span class="mode-arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </section>
+
+
+
+            <!-- OPTIONS -->
+
+            <section
+                id="optionsPanel"
+                class="options-panel hidden"
+            >
+
+                <div id="optionsContent"></div>
+
+            </section>
+
+        </main>
+
+
+
+        <!-- ================================
+             QUIZ SCREEN
+        ================================= -->
+
+        <main id="quizScreen" class="screen">
+
+            <div class="quiz-header">
+
+                <button
+                    id="quitQuiz"
+                    class="back-button"
+                >
+                    ✕ Quit
+                </button>
+
+
+                <div class="quiz-information">
+
+                    <span id="quizTheme">
+                        Theme
+                    </span>
+
+                    <span class="separator">
+                        •
+                    </span>
+
+                    <span id="quizProgress">
+                        1 / 10
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="quizTimer"
+                    class="quiz-timer"
+                >
+                    00:00
+                </div>
+
+            </div>
+
+
+
+            <!-- PROGRESS -->
+
+            <div class="progress-track">
+
+                <div
+                    id="progressBar"
+                    class="progress-bar"
+                ></div>
+
+            </div>
+
+
+
+            <!-- QUESTION -->
+
+            <section class="question-card">
+
+                <div
+                    id="questionNumber"
+                    class="question-number"
+                >
+                    QUESTION 01
+                </div>
+
+                <h1
+                    id="questionText"
+                    class="question-text"
+                >
+                    Question
+                </h1>
+
+
+                <div
+                    id="answers"
+                    class="answers"
+                ></div>
+
+
+                <div
+                    id="questionExplanation"
+                    class="question-explanation hidden"
+                ></div>
+
+            </section>
+
+        </main>
+
+
+
+        <!-- ================================
+             RESULTS SCREEN
+        ================================= -->
+
+        <main id="resultsScreen" class="screen">
+
+            <section class="results-card">
+
+                <div class="results-icon">
+                    ✦
+                </div>
+
+                <span class="section-label">
+                    QUIZ COMPLETE
+                </span>
+
+                <h1 id="resultsTitle">
+                    Great work!
+                </h1>
+
+                <p id="resultsDescription">
+                    Here is how you performed.
+                </p>
+
+
+                <!-- SCORE -->
+
+                <div class="score-display">
+
+                    <span>
+                        SCORE
+                    </span>
+
+                    <strong id="finalScore">
+                        0
+                    </strong>
+
+                </div>
+
+
+
+                <!-- STATISTICS -->
+
+                <div class="statistics">
+
+                    <div class="stat">
+
+                        <strong id="finalCorrect">
+                            0
+                        </strong>
+
+                        <span>
+                            Correct
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <strong id="finalWrong">
+                            0
+                        </strong>
+
+                        <span>
+                            Incorrect
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <strong id="finalAccuracy">
+                            0%
+                        </strong>
+
+                        <span>
+                            Accuracy
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <strong id="finalTime">
+                            0s
+                        </strong>
+
+                        <span>
+                            Time
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ACTIONS -->
+
+                <div class="result-actions">
+
+                    <button
+                        id="replayButton"
+                        class="primary-button"
+                    >
+                        ↻ Replay
+                    </button>
+
+                    <button
+                        id="homeButton"
+                        class="secondary-button"
+                    >
+                        ⌂ Home
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- ================================
+         TOAST
+    ================================= -->
+
+    <div
+        id="toast"
+        class="toast"
+    >
+        Message
+    </div>
+
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>
