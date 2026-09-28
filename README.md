@@ -78,3 +78,5 @@ Questions live in `data/questions.json`. Each question contains:
 - `explanation`
 
 Keep every question ID unique and make sure `correctAnswer` points to the correct option index.
+
+<!-- GitHub Pages deployment -->
